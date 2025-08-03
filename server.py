@@ -27,46 +27,46 @@ def main():
         data = load_data()
 
         if command == "get_all":
-            socket.send_json({"status": "success", "tasks": data})
+            socket.send_json({"status": "success", "hobbies": data})
         elif command == "get_by_name":
-            hobby = message.get("name")
-            if hobby:
-                matching = [task for task in data if task["name"] == hobby]
-                socket.send_json({"status": "success", "tasks": matching})
+            name = message.get("name")
+            if name:
+                matching = [hobby for hobby in data if hobby["name"] == name]
+                socket.send_json({"status": "success", "hobbies": matching})
             else:
                 socket.send_json({"status": "error", "message": "Missing 'name' field"})
 
-        if command == "update":
+        elif command == "update":
 
-            hobby = message.get("name")
+            name = message.get("name")
             completed = message.get("completed", False)
-            if hobby is None:
+            if name is None:
                 socket.send_json({"status": "error", "message": "Missing 'name' field"})
 
                 continue
 
             # Check if task already exists
             updated = False
-            for task in data:
+            for hobby in data:
 
-                if task["name"] == hobby:
-                    task["completed"] = completed
+                if hobby["name"] == name:
+                    hobby["completed"] = completed
 
                     updated = True
 
                     break
 
             if not updated:
-                data.append({"name": hobby, "completed": completed})
+                data.append({"name": name, "completed": completed})
 
             save_data(data)
 
             action = "Updated" if updated else "Added"
             socket.send_json({
                 "status": "success",
-                "message": f"{action} task: {{'name': '{hobby}', 'completed': {completed}}}"
-
-            })
+                "message": f"{action} hobby: {{'name': '{name}', 'completed': {completed}}}"})
+        else:
+            socket.send_json({"status": "error", "message": "Unknown command"})
 
 
 if __name__ == "__main__":

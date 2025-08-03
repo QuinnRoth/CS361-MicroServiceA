@@ -15,7 +15,7 @@ def getHobby(hobby):
     message = {"command": "get_by_name", "name": hobby}
     response = send_request(message)
     if response.get("status") == "success":
-        return response.get("tasks", [])
+        return response.get("hobbies", [])
     else:
         print(f"Error: {response.get('message', 'Unknown error')}")
         return []
@@ -25,7 +25,7 @@ def getAllHobbies():
     message = {"command": "get_all"}
     response = send_request(message)
     if response.get("status") == "success":
-        return response.get("tasks", [])
+        return response.get("hobbies", [])
     else:
         print(f"Error: {response.get('message', 'Unknown error')}")
         return []
