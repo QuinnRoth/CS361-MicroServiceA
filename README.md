@@ -34,4 +34,4 @@ Example call:
     response = socket.recv_json()
 
 UML SEQUENCE DIAGRAM:
-https://github.com/QuinnRoth/CS361-MicroServiceA/blob/main/Sequence%20diagram.pdf
+https://github.com/QuinnRoth/CS361-MicroServiceA/blob/main/Sequence%20diagram-1.pdf
