@@ -34,19 +34,4 @@ Example call:
     response = socket.recv_json()
 
 UML SEQUENCE DIAGRAM:
-Client                  Server
-  |                        |
-  |--send_request()------->|  (e.g. {"command": "add", "name": "run", "completed": true})
-  |                        |
-  |                    load_data()
-  |                        |
-  |                task found or not?
-  |                        |
-  |                 update or append
-  |                        |
-  |                    save_data()
-  |                        |
-  |<-----send_json()-------|  (e.g. {"status": "success", "message": "Updated task"})
-  |                        |
-
-    
+https://github.com/QuinnRoth/CS361-MicroServiceA/blob/main/Sequence%20diagram.pdf
